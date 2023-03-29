@@ -18,8 +18,8 @@ ${store_url}=               https://robotsparebinindustries.com/#/robot-order
 ${csv_file}=                https://robotsparebinindustries.com/orders.csv
 ${Global_Retry_Count}=      3
 ${Global_wait_time}=        3sec
-${PDF_Folder}=              ${OUTPUT_DIR}${/}output${/}receipts
-${Img_Temp_Folder}=         ${OUTPUT_DIR}${/}output${/}img
+${PDF_Folder}=              ${CURDIR}${/}output${/}receipts
+${Img_Temp_Folder}=         ${CURDIR}${/}output${/}img
 
 
 *** Tasks ***
