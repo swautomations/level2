@@ -34,30 +34,30 @@ Order robots from RobotSpareBin Industries Inc
         Log To Console    ${order}
 
         ${temp}=    Evaluate    ${count} + 1
-        IF    ${temp} < 5
-            Fill the Form    ${order}
-            TRY
-                Wait Until Keyword Succeeds    ${Global_Retry_Count}    ${Global_wait_time}    Submit the Order
-                ${recpt}=    Generate receipt    ${order}[Order number]
-                Log To Console    ${recpt}
-                ${rbt_img}=    Take Screenshot of robot    ${order}[Order number]
-                Log To Console    ${rbt_img}
-                Wait Until Keyword Succeeds    ${Global_Retry_Count}    ${Global_wait_time}
-                ...    Embed image to receipt    ${recpt}    ${rbt_img}
+        #IF    ${temp} < 5
+        Fill the Form    ${order}
+        TRY
+            Wait Until Keyword Succeeds    ${Global_Retry_Count}    ${Global_wait_time}    Submit the Order
+            ${recpt}=    Generate receipt    ${order}[Order number]
+            Log To Console    ${recpt}
+            ${rbt_img}=    Take Screenshot of robot    ${order}[Order number]
+            Log To Console    ${rbt_img}
+            Wait Until Keyword Succeeds    ${Global_Retry_Count}    ${Global_wait_time}
+            ...    Embed image to receipt    ${recpt}    ${rbt_img}
 
-                Wait Until Element Is Visible    //*[@id="order-another"]
-                Wait Until Keyword Succeeds    ${Global_Retry_Count}    ${Global_wait_time}
-                ...    Click Element    //*[@id="order-another"]
-                Wait Until Element Is Visible    xpath://*[@id="root"]/div/div[2]/div/div/div/div/div/button[1]
-                Wait Until Keyword Succeeds    ${Global_Retry_Count}    ${Global_wait_time}
-                ...    Click Element    xpath://*[@id="root"]/div/div[2]/div/div/div/div/div/button[1]
-            EXCEPT
-                Log To Console    Order no ${order}[Order number] could not be submitted
-            END
-            Set Test Variable    ${count}    ${temp}
-        ELSE
-            BREAK
+            Wait Until Element Is Visible    //*[@id="order-another"]
+            Wait Until Keyword Succeeds    ${Global_Retry_Count}    ${Global_wait_time}
+            ...    Click Element    //*[@id="order-another"]
+            Wait Until Element Is Visible    xpath://*[@id="root"]/div/div[2]/div/div/div/div/div/button[1]
+            Wait Until Keyword Succeeds    ${Global_Retry_Count}    ${Global_wait_time}
+            ...    Click Element    xpath://*[@id="root"]/div/div[2]/div/div/div/div/div/button[1]
+        EXCEPT
+            Log To Console    Order no ${order}[Order number] could not be submitted
         END
+        Set Test Variable    ${count}    ${temp}
+        #ELSE
+        #BREAK
+        #END
     END
     Wait Until Keyword Succeeds    ${Global_Retry_Count}    ${Global_wait_time}
     ...    Package pdf into zip
