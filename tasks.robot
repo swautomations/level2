@@ -111,7 +111,7 @@ Embed image to receipt
     Close Pdf    ${recpt}
 
 Package pdf into zip
-    ${zip_file}=    Set Variable    ${OUTPUT_DIR}${/}output${/}PDFArchive.zip
+    ${zip_file}=    Set Variable    ${CURDIR}${/}output${/}PDFArchive.zip
     Archive Folder With Zip    ${PDF_Folder}    ${zip_file}
 
 Setup required Directories
